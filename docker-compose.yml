@@ -23,8 +23,8 @@ services:
       POSTGRES_PASSWORD: pass
 
   gate-simulator:
-      build: .
-      image: gate-simulator
-      ports:
-        - '9999:9999'
+    build: .
+    image: gate-simulator
+    ports:
+      - '9999:9999'
 
