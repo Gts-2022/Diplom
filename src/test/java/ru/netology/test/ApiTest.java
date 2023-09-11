@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.SQLHelper;
 
-import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertTrue;
 import static ru.netology.data.ApiHelper.requestApi;
 import static ru.netology.data.DataHelper.getNumberStatusApproved;
@@ -26,49 +25,48 @@ public class ApiTest {
         SelenideLogger.removeListener("allure");
     }
 
-//    @BeforeEach
-//    void setup() {
-//        open("http://localhost:8080");
-//
-//    }
     @BeforeEach
     void connectDB() {
         SQLHelper.getConn();
     }
+
     @BeforeEach
     public void cleanBase() {
         SQLHelper.cleanDataBase();
     }
 
     @Test
-    //Запрос "Купить" в Базу данных карты со статусом Approved.ОР 200
-    void shouldRequestWithValidDataDebitCardStatusApproved(){
+        //Запрос "Купить" в Базу данных карты со статусом Approved.ОР 200
+    void shouldRequestWithValidDataDebitCardStatusApproved() {
         var apiValidCardApproved = getNumberStatusApproved();
-        var response=requestApi(apiValidCardApproved,"/api/v1/pay");
+        var response = requestApi(apiValidCardApproved, "/api/v1/pay");
         assertTrue(response.contains(SQLHelper.getPaymentGateStatus()));
 
     }
+
     @Test
         //Запрос "Купить" в Базу данных карты со статусом Declined.ОР 200
-    void shouldRequestWithValidDataDebitCardStatusDeclined(){
+    void shouldRequestWithValidDataDebitCardStatusDeclined() {
         var apiValidCardDeclined = getNumberStatusDeclined();
-        var response=requestApi(apiValidCardDeclined,"/api/v1/pay");
+        var response = requestApi(apiValidCardDeclined, "/api/v1/pay");
         assertTrue(response.contains(SQLHelper.getPaymentGateStatus()));
 
     }
+
     @Test
         //Запрос "Купить в кредит" в Базу данных карты со статусом Approved.ОР 200
-    void shouldRequestWithValidDataCreditCardStatusApproved(){
+    void shouldRequestWithValidDataCreditCardStatusApproved() {
         var apiValidCardApproved = getNumberStatusApproved();
-        var response=requestApi(apiValidCardApproved,"/api/v1/credit");
+        var response = requestApi(apiValidCardApproved, "/api/v1/credit");
         assertTrue(response.contains(SQLHelper.getCreditGateStatus()));
 
     }
+
     @Test
         //Запрос "Купить в кредит" в Базу данных карты со статусом Declined.ОР 200.
-    void shouldRequestWithValidDataCreditCardStatusDeclined(){
+    void shouldRequestWithValidDataCreditCardStatusDeclined() {
         var apiValidCardDeclined = getNumberStatusDeclined();
-        var response=requestApi(apiValidCardDeclined,"/api/v1/credit");
+        var response = requestApi(apiValidCardDeclined, "/api/v1/credit");
         assertTrue(response.contains(SQLHelper.getCreditGateStatus()));
 
     }
