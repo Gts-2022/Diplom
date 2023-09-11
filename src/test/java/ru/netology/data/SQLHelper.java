@@ -31,7 +31,7 @@ public class SQLHelper {
     }
 
     @SneakyThrows
-    public static String getPaymentGateStatus() {
+    public static CharSequence getPaymentGateStatus() {
         var status = "SELECT status FROM payment_entity";
         return runner.query(getConn(), status, new ScalarHandler<>());
 
