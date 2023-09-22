@@ -6,9 +6,17 @@
 
 3.Запустить Docker в терминале командой **docker-compose up**
 
-4.Запустить в свободном терминале jar-файл командой **java -jar./artifacts/aqa-shop.jar**
+4.Запустить в свободном терминале приложения для БД : 
 
-5.Запустить в свободном терминале тесты командой **./gradlew clean test**
+-для MySQL: **java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar artifacts/aqa-shop.jar**
+
+-для Postgresgl: **java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifacts/aqa-shop.jar**
+
+5.Запустить в свободном терминале тесты для БД:
+
+-для MySQL: **./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"**
+
+-для Postgresgl: **./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"**
 
 6.После прогона автотестов создать отчет в Allure командой в терминале **./gradlew allureServe**
 
