@@ -1,6 +1,6 @@
 # Процедура запуска автотестов
 
-1.Склонировать [проект](https://github.com/netology-code/qa-diploma) командой **Git clone**
+1.Склонировать [проект](https://github.com/Gts-2022/Diplom) командой **Git clone**
 
 2.Установить Docker Desktop 
 
