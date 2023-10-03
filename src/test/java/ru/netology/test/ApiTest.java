@@ -9,7 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.SQLHelper;
 
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.netology.data.ApiHelper.requestApi;
 import static ru.netology.data.DataHelper.getNumberStatusApproved;
 import static ru.netology.data.DataHelper.getNumberStatusDeclined;
@@ -25,10 +26,6 @@ public class ApiTest {
         SelenideLogger.removeListener("allure");
     }
 
-    @BeforeEach
-    void connectDB() {
-        SQLHelper.getConn();
-    }
 
     @BeforeEach
     public void cleanBase() {
@@ -40,7 +37,7 @@ public class ApiTest {
     void shouldRequestWithValidDataDebitCardStatusApproved() {
         var apiValidCardApproved = getNumberStatusApproved();
         var response = requestApi(apiValidCardApproved, "/api/v1/pay");
-        assertTrue(response.contains(SQLHelper.getPaymentGateStatus()));
+        assertTrue(response.contains(SQLHelper.getPaymentGateStatus()), "Значение статуса в ответе не соответствует ожидаемому");
 
     }
 
@@ -49,7 +46,7 @@ public class ApiTest {
     void shouldRequestWithValidDataDebitCardStatusDeclined() {
         var apiValidCardDeclined = getNumberStatusDeclined();
         var response = requestApi(apiValidCardDeclined, "/api/v1/pay");
-        assertTrue(response.contains(SQLHelper.getPaymentGateStatus()));
+        assertTrue(response.contains(SQLHelper.getPaymentGateStatus()), "Значение статуса в ответе не соответствует ожидаемому");
 
     }
 
@@ -58,7 +55,7 @@ public class ApiTest {
     void shouldRequestWithValidDataCreditCardStatusApproved() {
         var apiValidCardApproved = getNumberStatusApproved();
         var response = requestApi(apiValidCardApproved, "/api/v1/credit");
-        assertTrue(response.contains(SQLHelper.getCreditGateStatus()));
+        assertTrue(response.contains(SQLHelper.getCreditGateStatus()), "Значение статуса в ответе не соответствует ожидаемому");
 
     }
 
@@ -67,7 +64,7 @@ public class ApiTest {
     void shouldRequestWithValidDataCreditCardStatusDeclined() {
         var apiValidCardDeclined = getNumberStatusDeclined();
         var response = requestApi(apiValidCardDeclined, "/api/v1/credit");
-        assertTrue(response.contains(SQLHelper.getCreditGateStatus()));
+        assertTrue(response.contains(SQLHelper.getCreditGateStatus()), "Значение статуса в ответе не соответствует ожидаемому");
 
     }
 }

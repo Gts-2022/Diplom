@@ -9,22 +9,21 @@ import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
     public static RequestSpecification requestSpec = new RequestSpecBuilder()
-        .setBaseUri("http://localhost")
+            .setBaseUri(System.getProperty("sut.url"))
+            .setPort(8080)
+            .setAccept(ContentType.JSON)
+            .setContentType(ContentType.JSON)
+            .log(LogDetail.ALL)
+            .build();
 
-        .setPort(8080)
-        .setAccept(ContentType.JSON)
-        .setContentType(ContentType.JSON)
-        .log(LogDetail.ALL)
-        .build();
-
-    public static String requestApi(DataHelper.CardInfo card, String path){
+    public static String requestApi(DataHelper.CardInfo card, String path) {
         return given()
                 .spec(requestSpec)
-                .body( card )
+                .body(card)
                 .when()
-                .post( path )
+                .post(path)
                 .then()
-                .statusCode( 200 )
+                .statusCode(200)
                 .extract().response().asString();
     }
 

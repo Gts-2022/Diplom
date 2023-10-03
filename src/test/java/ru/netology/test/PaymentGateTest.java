@@ -28,12 +28,7 @@ public class PaymentGateTest {
 
     @BeforeEach
     void setup() {
-        open("http://localhost:8080");
-
-    }
-
-    @BeforeEach
-    public void cleanBase() {
+        open(System.getProperty("sut.url"));
         SQLHelper.cleanDataBase();
     }
 

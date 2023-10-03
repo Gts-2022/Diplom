@@ -10,6 +10,7 @@ import ru.netology.page.DashboardPage;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class CreditGateTest {
     @BeforeAll
     static void setUpAll() {
@@ -23,14 +24,10 @@ public class CreditGateTest {
 
     @BeforeEach
     void setup() {
-        open("http://localhost:8080");
-
-    }
-
-    @BeforeEach
-    public void cleanBase() {
+        open(System.getProperty("sut.url"));
         SQLHelper.cleanDataBase();
     }
+
 
     @DisplayName("1.Отправка формы с валидными данными, где указана карта со статусом APPROVED")
     @Test
